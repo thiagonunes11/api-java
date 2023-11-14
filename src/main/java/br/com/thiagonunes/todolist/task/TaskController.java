@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +29,7 @@ public class TaskController {
     @Autowired
     private ITaskRepository taskRepository;
 
+    @CrossOrigin
     @PostMapping("/")
     public ResponseEntity create(@RequestBody TaskModel taskModel, HttpServletRequest request){
         
@@ -50,6 +52,7 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.OK).body(task) ;
     }
 
+    @CrossOrigin
     @GetMapping("/")
     public List<TaskModel> list(HttpServletRequest request){
         var userID = request.getAttribute("userID");
@@ -57,6 +60,7 @@ public class TaskController {
         return tasks;
     }
 
+    @CrossOrigin
     @PutMapping("/{id}")
     public ResponseEntity update(@RequestBody TaskModel taskModel, HttpServletRequest request, @PathVariable UUID id){
         

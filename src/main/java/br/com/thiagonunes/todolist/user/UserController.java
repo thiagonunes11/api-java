@@ -3,6 +3,7 @@ package br.com.thiagonunes.todolist.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ public class UserController {
     @Autowired
     private IUserRepository userRepository;
     
+    @CrossOrigin
     @PostMapping("/")
     public ResponseEntity create(@RequestBody UserModel userModel){
         var user = this.userRepository.findByUsername(userModel.getUsername());
